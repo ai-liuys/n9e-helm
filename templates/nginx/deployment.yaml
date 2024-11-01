@@ -67,6 +67,10 @@ spec:
           {{- $_ := set . "scheme" "HTTPS" -}}
           {{- $_ := set . "port" "8443" -}}
         {{- end }}
+        { { - if .Values.nginx.internal.resources } }
+        resources:
+        { { toYaml .Values.nginx.internal.resources | indent 10 } }
+        { { - end } }
         livenessProbe:
           httpGet:
             scheme: {{ .scheme }}

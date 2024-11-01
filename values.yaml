@@ -104,11 +104,14 @@ nginx:
   serviceAccountName: ""
   automountServiceAccountToken: false
   replicas: 1
-  # resources:
-  #  requests:
-  #    memory: 256Mi
-  #    cpu: 100m
   nodeSelector: {}
+  resources:
+    requests:
+      memory: "100Mi"
+      cpu: "100m"
+    limits:
+      memory: "2Gi"
+      cpu: "2000m"
   tolerations: []
   affinity: {}
   ## Additional deployment annotations
@@ -128,7 +131,13 @@ database:
     password: "1234"
     shmSizeLimit: 512Mi
     nodeSelector: {}
-    resources: {}
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "2Gi"
+        cpu: "2000m"
     tolerations: []
     affinity: {}
     priorityClassName:
@@ -155,6 +164,13 @@ redis:
       repository: docker.io/library/redis
       tag: 6.2
     nodeSelector: {}
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "2Gi"
+        cpu: "2000m"
     tolerations: []
     affinity: {}
     priorityClassName:
@@ -176,6 +192,13 @@ prometheus:
       repository: docker.io/prom/prometheus
       tag: latest
     nodeSelector: {}
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "2Gi"
+        cpu: "2000m"
     tolerations: []
     affinity: {}
     priorityClassName:
@@ -217,10 +240,13 @@ n9e:
     image:
       repository: flashcatcloud/nightingale
       tag: 7.0.0
-    resources: {}
-    #  requests:
-    #    memory: 512Mi
-    #    cpu: 1000m
+    resources:
+      requests:
+        memory: "100Mi"
+        cpu: "100m"
+      limits:
+        memory: "2Gi"
+        cpu: "2000m"
     nodeSelector: { }
     tolerations: [ ]
     affinity: { }
